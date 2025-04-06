@@ -26,6 +26,10 @@ import RecyclingGame from "./Game/game1/recyclingGame";
 import AdminPlayers from "./pages/AdminPlayer";
 import GamePage from "./pages/adminGamepage";
 import GameCanvas from "./Game/game2/GameCanvas";
+import TreePlantingGame from "./Game/game3/mainScene";
+import RescueMission from "./Game/game4/gamePage";
+
+
 
 
 
@@ -79,7 +83,7 @@ function App() {
        
        <Route path="/recycling-Home/:userId" element={
         <ProtectedRoute>
-          <Game1/>
+         <Game1/>
         </ProtectedRoute>
         }/>
        
@@ -97,6 +101,20 @@ function App() {
           <ProtectedRoute>
           <GameCanvas/>
           </ProtectedRoute>}/>
+
+          {/* game3 */}
+          <Route path="/treePlant/:userId" element={
+              <ProtectedRoute>
+              <TreePlantingGame/>
+              </ProtectedRoute>}/>
+
+         {/* game4 */}
+         <Route path="/rescue/:userId" element={
+              <ProtectedRoute>
+             <RescueMission/>
+              </ProtectedRoute>}/>
+         
+        
 
 
       {/* admin */}

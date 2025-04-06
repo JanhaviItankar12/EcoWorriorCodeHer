@@ -8,6 +8,8 @@ export default class MainScene extends Phaser.Scene {
     this.appliances = [];
     this.gameOverShown = false;
     this.gameWon = false;
+    this.lightsTurnedOff = 0;
+    this.totalLights = 20;
   }
 
   preload() {
@@ -23,43 +25,57 @@ export default class MainScene extends Phaser.Scene {
     this.add.image(400, 300, "room");
 
     // Score and waste displays
-    this.scoreText = this.add.text(20, 20, "Score: 0", {
-      fontSize: "20px",
+    this.scoreText = this.add.text(20, 20, `Score: ${this.score}`, {  // Display initial score
+      fontSize: "24px",
       fill: "#fff",
+      fontStyle: "bold"
     });
     
     this.wasteText = this.add.text(20, 50, "Waste: 0%", {
-      fontSize: "20px",
+      fontSize: "24px",
       fill: "#f00",
+      fontStyle: "bold"
     });
 
-    // Player setup - fully draggable
-    this.player = this.add.sprite(400, 300, "player").setScale(0.2);
-    
-    // Make player draggable
-    this.player.setInteractive({ draggable: true });
+    // Player setup
+    this.player = this.add.sprite(400, 300, "player")
+      .setScale(0.2)
+      .setInteractive({ draggable: true });
     
     // Drag handling
+    this.input.on('dragstart', () => {
+      this.player.setScale(0.22);
+    });
+
     this.input.on('drag', (pointer, gameObject, dragX, dragY) => {
-      gameObject.x = dragX;
-      gameObject.y = dragY;
-      
-      // Check for nearby lights while dragging
+      gameObject.setPosition(dragX, dragY);
       this.checkLightProximity();
     });
 
+    this.input.on('dragend', () => {
+      this.player.setScale(0.2);
+    });
+
     // Create lights
-    this.createLights(10);
+    this.createLights(this.totalLights);
 
     // Instructions
     this.add.text(400, 560, "Drag the player to turn off lights", {
-      fontSize: "16px",
+      fontSize: "20px",
       fill: "#ffffff",
+      backgroundColor: "#000000",
+      padding: { x: 10, y: 5 }
     }).setOrigin(0.5);
+
+    // Light counter
+    this.lightsText = this.add.text(20, 80, `Lights: ${this.lightsTurnedOff}/${this.totalLights}`, {
+      fontSize: "20px",
+      fill: "#ffff00"
+    });
   }
 
   createLights(numLights) {
-    const margin = 80;
+    const margin = 60;
     const maxX = 800 - margin;
     const maxY = 600 - margin;
     
@@ -90,23 +106,30 @@ export default class MainScene extends Phaser.Scene {
           light.y
         );
         
-        if (distance < 50) {
+        if (distance < 60) {
           // Turn off the light
           light.setTexture("lightOff");
           light.setData("on", false);
           light.setData("touched", true);
           
-          // Play sound and update score
-          this.sound.play("hitSound");
+          // Update game state
           this.score += 10;
-          this.scoreText.setText(`Score: ${this.score}`);
+          this.lightsTurnedOff++;
           
-          // Optional visual effect
+          // Update UI - CRITICAL FIX: Use setText to update the score display
+          this.scoreText.setText(`Score: ${this.score}`);
+          this.lightsText.setText(`Lights: ${this.lightsTurnedOff}/${this.totalLights}`);
+          
+          // Play sound
+          this.sound.play("hitSound");
+          
+          // Visual effect
           this.tweens.add({
             targets: light,
-            alpha: 0.8,
-            duration: 300,
-            yoyo: true
+            scale: 0.18,
+            duration: 200,
+            yoyo: true,
+            ease: "Sine.easeOut"
           });
         }
       }
@@ -114,7 +137,7 @@ export default class MainScene extends Phaser.Scene {
   }
 
   update() {
-    // Calculate waste from remaining active lights
+    // Calculate waste
     let wasteIncrement = 0;
     this.appliances.forEach((light) => {
       if (light.getData("on")) {
@@ -128,19 +151,22 @@ export default class MainScene extends Phaser.Scene {
     // Game over check
     if (this.wasteMeter >= 100 && !this.gameOverShown) {
       this.scene.pause();
-      this.add.text(400, 300, "Game Over! Too much energy wasted!", {
-        fontSize: "24px",
-        fill: "#fff",
+      this.add.text(400, 300, `Game Over! Final Score: ${this.score}`, {
+        fontSize: "32px",
+        fill: "#ff0000",
+        backgroundColor: "#000000",
+        padding: { x: 20, y: 10 }
       }).setOrigin(0.5);
       this.gameOverShown = true;
     }
     
     // Win condition
-    const allLightsOff = this.appliances.every(light => !light.getData("on"));
-    if (allLightsOff && !this.gameWon) {
-      this.add.text(400, 250, "You Win! All lights turned off!", {
-        fontSize: "24px",
-        fill: "#0f0",
+    if (this.lightsTurnedOff >= this.totalLights && !this.gameWon) {
+      this.add.text(400, 250, `You Win! Final Score: ${this.score}`, {
+        fontSize: "32px",
+        fill: "#00ff00",
+        backgroundColor: "#000000",
+        padding: { x: 20, y: 10 }
       }).setOrigin(0.5);
       this.gameWon = true;
     }

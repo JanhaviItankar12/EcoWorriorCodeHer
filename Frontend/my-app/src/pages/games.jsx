@@ -112,6 +112,53 @@ const GamesPage = () => {
     </div>
   </div>
 
+  {/* Clean City Game Card */}
+  <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 max-w-sm w-full mx-auto border border-green-200">
+    <div className="relative">
+      <img src="/images/clean-city.jpg" alt="Clean City Game" className="w-full h-56 object-cover" />
+      <div className="absolute top-3 right-3 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+        ECO GAME
+      </div>
+    </div>
+    <div className="p-6">
+      <h3 className="text-2xl font-bold text-green-800 mb-2">WilLife Rescue Operation</h3>
+      <p className="text-green-700 text-base mb-4">Rescue Animal</p>
+      <button 
+        onClick={() => navigate(`/rescue/${userId}`)} 
+        className="w-full bg-gradient-to-r from-green-500 to-emerald-400 hover:from-green-600 hover:to-emerald-500 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center gap-2"
+      >
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-4.586-2.65A1 1 0 009 9.342v5.316a1 1 0 001.166.974l4.586-1.05a1 1 0 00.752-.974v-1.49a1 1 0 00-.752-.95z" />
+        </svg>
+        Play Now
+      </button>
+    </div>
+  </div>
+
+
+  {/* Clean City Game Card */}
+  <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 max-w-sm w-full mx-auto border border-green-200">
+    <div className="relative">
+      <img src="/images/clean-city.jpg" alt="Clean City Game" className="w-full h-56 object-cover" />
+      <div className="absolute top-3 right-3 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+        ECO GAME
+      </div>
+    </div>
+    <div className="p-6">
+      <h3 className="text-2xl font-bold text-green-800 mb-2">Tree Plantation</h3>
+      <p className="text-green-700 text-base mb-4">Plant a Tree</p>
+      <button 
+        onClick={() => navigate(`/treePlant/${userId}`)} 
+        className="w-full bg-gradient-to-r from-green-500 to-emerald-400 hover:from-green-600 hover:to-emerald-500 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 flex items-center justify-center gap-2"
+      >
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-4.586-2.65A1 1 0 009 9.342v5.316a1 1 0 001.166.974l4.586-1.05a1 1 0 00.752-.974v-1.49a1 1 0 00-.752-.95z" />
+        </svg>
+        Play Now
+      </button>
+    </div>
+  </div>
+
 </div>
 
       </main> {/* Corrected JSX closing tag */}
