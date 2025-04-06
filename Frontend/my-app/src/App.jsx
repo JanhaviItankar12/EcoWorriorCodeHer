@@ -93,7 +93,10 @@ function App() {
 
         {/* game2 */}
 
-        <Route path="/game2" element={<GameCanvas/>}/>
+        <Route path="/conserve-energy/:userId" element={
+          <ProtectedRoute>
+          <GameCanvas/>
+          </ProtectedRoute>}/>
 
 
       {/* admin */}

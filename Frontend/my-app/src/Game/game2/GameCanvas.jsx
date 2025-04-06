@@ -1,7 +1,6 @@
-// src/components/GameCanvas.jsx
 import React, { useEffect } from "react";
 import Phaser from "phaser";
-import MainScene from "./mainScene.jsx";
+import MainScene from "./mainScene";
 
 const GameCanvas = () => {
   useEffect(() => {
@@ -26,7 +25,12 @@ const GameCanvas = () => {
     };
   }, []);
 
-  return <div id="game-container" />;
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <div id="game-container" />
+    </div>
+  );
 };
 
 export default GameCanvas;
+
