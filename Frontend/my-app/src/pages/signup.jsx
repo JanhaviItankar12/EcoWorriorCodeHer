@@ -171,6 +171,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Eye, EyeOff } from "lucide-react";
+import Navbar from "../component/Navbar";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -236,6 +237,8 @@ const Signup = () => {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 to-green-300">
       <div className="max-w-lg w-full bg-white p-8 rounded-3xl shadow-2xl text-center animate-fade-in">
         <h2 className="text-3xl font-extrabold text-green-800 mb-2">Create Your Account</h2>
@@ -323,6 +326,7 @@ const Signup = () => {
         </p>
       </div>
     </div>
+    </>
   );
 };
 

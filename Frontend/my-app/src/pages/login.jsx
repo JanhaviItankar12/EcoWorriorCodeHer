@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../component/Navbar";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -46,6 +47,8 @@ const Login = () => {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="min-h-screen flex items-center justify-center bg-green-100">
       <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-lg text-center">
         <h2 className="text-2xl font-bold text-green-700">Login to EcoWarriors</h2>
@@ -110,6 +113,7 @@ const Login = () => {
         <p className="mt-2 text-gray-600">Don't have an account? <a href="/signup" className="text-green-700 hover:underline">Sign Up</a></p>
       </div>
     </div>
+    </>
   );
 };
 

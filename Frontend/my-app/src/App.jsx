@@ -25,6 +25,7 @@ import Game1 from "./Game/game1/game1";
 import RecyclingGame from "./Game/game1/recyclingGame";
 import AdminPlayers from "./pages/AdminPlayer";
 import GamePage from "./pages/adminGamepage";
+import GameCanvas from "./Game/game2/GameCanvas";
 
 
 
@@ -89,6 +90,10 @@ function App() {
         <RecyclingGame/>
         </ProtectedRoute>
         }/>
+
+        {/* game2 */}
+
+        <Route path="/game2" element={<GameCanvas/>}/>
 
 
       {/* admin */}

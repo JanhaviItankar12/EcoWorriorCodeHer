@@ -11,7 +11,7 @@ const GamesPage = () => {
   const navigate = useNavigate();
   // Sample eco-themed game data
   const games = [
-    { id: 1, name: "Forest Defender", imageUrl: "/api/placeholder/300/200", eco: "Save ancient forests" },
+    { id: 1, name: "Recycling", imageUrl: "/api/placeholder/300/200", eco: "Recycle the waste" },
     { id: 2, name: "Ocean Cleanup", imageUrl: "/api/placeholder/300/200", eco: "Protect marine life" },
     { id: 3, name: "Climate Heroes", imageUrl: "/api/placeholder/300/200", eco: "Fight climate change" },
     { id: 4, name: "Wildlife Rescue", imageUrl: "/api/placeholder/300/200", eco: "Save endangered species" },
@@ -107,7 +107,7 @@ const GamesPage = () => {
         </div>
       </main>
 
-      <Footer />
+      
 
     </div>
   );

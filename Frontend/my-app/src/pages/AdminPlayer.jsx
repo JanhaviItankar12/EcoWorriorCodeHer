@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../component/Navbar";
 
 const AdminPlayers = () => {
   const [players, setPlayers] = useState([]);
@@ -64,8 +65,13 @@ const AdminPlayers = () => {
     });
 
   return (
+    <>
+    <Navbar/>
     <div className="min-h-screen p-6 bg-gray-100">
-      <h1 className="text-3xl font-bold mb-6 text-green-700">All Players</h1>
+      {/* <h1 className="text-3xl font-bold mb-6 text-green-700">All Players</h1> */}
+      <h1 className="text-3xl font-bold mt-24 mb-6 text-green-700">All Players</h1>
+
+
       <button
         onClick={() => navigate(`/admin/${userId}`)}
         className="bg-green-600 text-white px-4 py-2 cursor-pointer rounded hover:bg-green-700 transition"
@@ -122,6 +128,7 @@ const AdminPlayers = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 
