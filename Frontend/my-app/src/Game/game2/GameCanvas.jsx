@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Phaser from "phaser";
-import MainScene from "./mainScene";
+import MainScene from "./mainScene.js"
 
 const GameCanvas = () => {
   useEffect(() => {
